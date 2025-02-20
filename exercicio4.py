@@ -4,8 +4,8 @@ os.system("clear")
 
 
 
-login_cadastrado = "Wendel"
-senha_cadastrada = "Wendel123"
+login_cadastrado = "wendel"''
+senha_cadastrada = "wendel123"
 
 login = input("Login: ")
 print()

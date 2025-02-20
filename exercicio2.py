@@ -17,7 +17,7 @@ media = float (primeira_nota + segunda_nota + terceira_nota) / 3
 print("Sua média é: ", media)    
 
 if media == 7:
-    print("APROVADO")
+    print("Aprovado")
 elif media < 7:
     print("Reprovado")
 else:
