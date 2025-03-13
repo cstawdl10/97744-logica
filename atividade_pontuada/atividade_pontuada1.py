@@ -18,7 +18,7 @@ elif primeiro_numero + segundo_numero == terceiro_numero:
     print("A soma desses números são iguais que o terceiro número.")
 
 else: 
-    print("A soma desses números são maiores do que o terceiro número.")
+    print("A soma dos dois primeiros números são maiores do que o terceiro número.")
 
 
 
