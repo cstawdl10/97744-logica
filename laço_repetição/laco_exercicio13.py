@@ -4,17 +4,14 @@ soma = 0
 contador = 0
 while True:
         nota = int(input("Digite sua nota: "))
-        contador += 1
-        soma += nota
-        if nota < 0:
+        if nota > 0:
+            soma += nota
+            contador += 1
+        else:
+              break
             
-            print("Apenas números positivos")
-            break
-    
-        mais_notas = input("Deseja adicionar mais uma nota ?\nUse 'S' or 'N' para responder: ").lower()
-        
-        if mais_notas  == "n":
-                break 
+            
+ 
 
 media = soma / contador
 
