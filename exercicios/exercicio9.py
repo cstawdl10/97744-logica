@@ -20,7 +20,7 @@ match opcoes:
     case 2:
           opcoes = ("Pizza Grande valor: 55,00")
     case 3:
-          opcoes = ("Pizza Média valor: 40,00")
+          opcoes = ("Pizza Média/valor: 40,00")
     case 4:
          opcoes = ("Pizza Pequena valor: 25,00")
 
