@@ -1,88 +1,64 @@
 import os
-os.system("cls")
-
 from dataclasses import dataclass
-lista_funcionarios = []
-lista_clientes = []
+
+os.system("cls || clear")
+
 @dataclass
 class Funcionario:
-    nome : str
-    data_de_admissao : int
-    matricula : int 
+    nome: str
+    data_admissao: str
+    matricula: str
     endereco: str
-    def exibir_resultados(self):
-        for i in range(3):
-            print(f"Nome do funcionário: {self.nome}")
-            print(f"Data de adimissão: {self.data_de_admissao}")
-            print(f"Matricula: {self.matricula}")
-            print(f"Endereço: {self.endereco}")
-            
-@dataclass    
+     
+   
+@dataclass
 class Cliente:
-    nome : str
-    data_de_nascimento: int
+    nome: str
+    data_nascimento: str
     endereco: str
-    def exibir_resultado(self):
-        for i in range(3):
-            print(f"Nome do cliente: {self.nome}")
-            print(f"Data de nascimento: {self.data_de_nascimento}")
-            print(f"Endereço: {self.endereco}")
-
-for i in range (3):
-    funcionario = Funcionario(
-        input("Digite o nome do funcionário: "),
-        input("Digite a data de admissão: "),
-        input("Digite o número da matricúla: "),
-        input("Digite o endereço: "),
-    )
-    lista_funcionarios.append(funcionario)        
-
-for i in range (3):
-    cliente = Cliente(
-        input("Digite o nome do cliente: "),
-        input("Digite a data de nascimento: "),
-        input("Digite o endereço: "),
-    )
-    lista_clientes.append(cliente)
-
-funcionario.exibir_resultados()
-cliente.exibir_resultado()
-
-nome_arquivo = "dados_funcionarios.csv"
-
-print("Salvando dados do arquivo")
-with open(nome_arquivo, "a") as arquivos_funcionarios:
-    for funcionario in lista_funcionarios:
-        arquivos_funcionarios.write(f"{funcionario.nome}, {funcionario.idade}\n")
-
-print("Salvo com sucesso.")
-
-print("\n Acessando dados em arquivo>.")
-try:
-    with open(nome_arquivo, "r") as arquivos_funcionarios:
-        linhas = arquivos_funcionarios.readlines()
-        for linha in linhas:
-            print(f" - {linha.strip()}")
-except FileNotFoundError:
-    print("O arquivo não foi encontrado")
+   
+def salvar_funcionarios(lista):
     nome_arquivo = "dados_funcionarios.csv"
 
+    with open(nome_arquivo, "a") as arquivo_fucionarios:
+        for funcionario in lista:
+            arquivo_fucionarios.write(f"{funcionario.nome}, {funcionario.data_admissao}, {funcionario.matricula}, {funcionario.endereco}\n")
+   
+    print("Dados dos funcionários salvos com sucesso.")
+       
+def salvar_clientes(lista):
+    nome_arquivo = "dados_clientes.csv"
 
-nomee_arquivo = "dados_clientes.csv"
-
-print("Salvando dados do arquivo")
-with open(nomee_arquivo, "a") as arquivos_clientes:
-    for cliente in lista_clientes:
-        arquivos_clientes.write(f"{cliente.nome}, {cliente.idade}\n")
-
-print("Salvo com sucesso.")
-
-print("\n Acessando dados em arquivo>.")
-try:
-    with open(nomee_arquivo, "r") as arquivos_clientes:
-        linhas = arquivos_clientes.readlines()
-        for linha in linhas:
-            print(f" - {linha.strip()}")
-except FileNotFoundError:
-    print("O arquivo não foi encontrado")
-    nomee_arquivo = "dados_clientes.csv"
+    with open(nome_arquivo, "w") as arquivo_clientes:
+        for cliente in lista:
+            arquivo_clientes.write(f"{cliente.nome}, {cliente.data_nascimento}, {cliente.endereco}\n")
+   
+    print("Dados dos clientes salvos com sucesso.")
+       
+   
+lista_funcionarios = []
+lista_clientes = []
+   
+for i in range(3):
+    print("Digite os dados do funcionário: ")
+    funcionario = Funcionario(
+        nome= input("Nome: "),
+        data_admissao=input("Data de nascimento: "),
+        matricula=input("Matrícula: "),
+        endereco=input("Endereço: ")
+    )
+    lista_funcionarios.append(funcionario)
+    print()
+   
+    print("Digite os dados do cliente: ")
+    cliente = Cliente(
+        nome=input("Nome: "),
+        data_nascimento=input("Data de nascimento: "),
+        endereco=input("Endereço: ")
+    )
+    lista_clientes.append(cliente)
+    print()
+   
+       
+salvar_funcionarios(lista_funcionarios)
+salvar_clientes(lista_clientes)
