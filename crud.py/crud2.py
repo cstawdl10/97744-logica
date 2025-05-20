@@ -1,20 +1,20 @@
 import os
 from dataclasses import dataclass
-
+import time
 os.system("cls || clear")
 
 @dataclass
 class Funcionario:
     nome: str
     cpf: str
-    data_nascimento: str
-    funcao: str
+    cargo: str
+    salario: str
    
     def mostrar_dados(self):
         print(f"Nome: {self.nome}")
         print(f"CPF: {self.cpf}")
-        print(f"Data de nascimento: {self.data_nascimento}")
-        print(f"Função: {self.funcao}")
+        print(f"Cargo: {self.cargo}")
+        print(f"Salário: {self.salario}")
         print()
        
    
@@ -29,13 +29,14 @@ def adicionar(lista):
     funcionario = Funcionario(
         nome=input("Nome: "),
         cpf=input("CPF: "),
-        data_nascimento=input("Data de nascimento: "),
-        funcao=input("Função: ")
+        cargo=input("Cargo: "),
+        salario=input("Salário: ")
     )
     lista.append(funcionario)
+
     print("Funcionário adicionado com sucesso.")
    
-def mostrar_funcionarios(lista):
+def mostrar(lista):
     if verificar_lista_vazia(lista):
         return
    
@@ -55,35 +56,59 @@ def atualizar(lista):
             print("= Digite os dados do funcionário = ")
             funcionario.nome=input("Nome: "),
             funcionario.cpf=input("CPF: "),
-            funcionario.data_nascimento=input("Data de nascimento: "),
-            funcionario.funcao=input("Função: ")
+            funcionario.cargo=input("Cargo: "),
+            funcionario.salario=input("Salário: ")
             encontrado = True
             break
    
     if not encontrado:
         print(f"\nO funcionário com o nome {funcionario.nome} não foi encontrado.")
        
-    mostrar_funcionarios(lista)
+    mostrar(lista)
    
 def excluir(lista):
     if verificar_lista_vazia(lista):
         return
    
     nome_excluir = input("Digite o nome do funcionário: ")
-    for funcinario in lista_funcionarios:
-        if funcinario.nome == nome_excluir:
-            lista_funcionarios.remove(nome_excluir)
+    for funcionario in lista_funcionarios:
+        if funcionario.nome == nome_excluir:
+            lista_funcionarios.remove(funcionario)
             print("Funcionário excluído com sucesso.")
         else:
             print("Funcionário não encontrado.")
-   
-
+def salvar_arquivo(lista):
+    nome_arquivo = "funcionarios.csv"
+    with open(nome_arquivo,"a") as arquivo:
+        for funcionario in lista:
+            arquivo.write(f"Nome: {funcionario.nome}\n{funcionario.cpf}\n{funcionario.cargo}\n{funcionario.salario}")
 lista_funcionarios = []
-for i in range(1):
-    adicionar(lista_funcionarios)  
+
+while True:
+    print("= Gerenciador de nomes =")
+    print("1 - Adicionar")
+    print("2 - Mostrar nomes")
+    print("3 - Atualizar")
+    print("4 - Excluir")
+    print("5 - Sair")
    
-mostrar_funcionarios(lista_funcionarios)
+    opcao = str (input("Digite uma das opções acima: "))
+   
+    match opcao:
+        case "1":
+            adicionar(lista_funcionarios)
+        case "2":
+            mostrar(lista_funcionarios)
+        case "3":
+            atualizar(lista_funcionarios)
+        case "4":
+            excluir(lista_funcionarios)
+        case "5":
+            print("\nSaindo do programa.")
+            break
+        case _:
+            print("\nOpção inválida. \nTente novamente.")
+    if opcao != 1:
+        time.sleep(2.5)
+    os.system("cls || clear")
 
-atualizar(lista_funcionarios)
-
-excluir(lista_funcionarios)
